@@ -1,0 +1,52 @@
+{% extends "layout.html" %}   
+{% block content %} 
+
+<div id="carousel1" class="carousel slide" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel1" data-slide-to="1"></li>
+    <li data-target="#carousel1" data-slide-to="2"></li>
+  </ul>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{url_for('static', filename='realtime.jpeg')}}" alt="Real-time Implementation" width="100%" height="500" style="opacity: 0.6;">
+      <div class="carousel-caption" style="background-color: gray;">
+        <h3>Real-time Implementation</h3>
+        <p>Processing significant amount of information in a time
+          constraint manner is a challenging task. As such applications
+          involve tasks like segmentation, feature extraction, classification and tracking, in which a significant amount of information
+          need to be processed in short duration to achieve the goal of
+          real-time implementation.</p>
+      </div>   
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static', filename='occulsion.jpg')}}" alt="occulsion" width="100%" height="500" style="opacity: 0.6;">
+      <div class="carousel-caption" style="background-color: gray;">
+        <h3>Occulsion</h3>
+        <p>In real life
+          scenarios, the dynamic objects usually occlude each other
+          due to which object of interest may only be partially visible. 
+          Segmentation and classification becomes difficult for these partially visible objects.</p>
+      </div>   
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static', filename='haphazard.jpg')}}" alt="Direction of Motion" width="100%" height="500" style="opacity: 0.6;">
+      <div class="carousel-caption" style="background-color: gray;">
+        <h3>Direction of Motion</h3>
+        <p>3-dimensional
+          objects in general have different appearance from different
+          angles. It is well known that accuracy of classifiers depends on
+          features used which in turn depends on angle to some extent.
+          A reasonable example is to consider appearance of a bikerider from front view and side view.</p>
+      </div>   
+    </div>
+    
+  </div>
+  <a class="carousel-control-prev" href="#carousel1" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#carousel1" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+{% endblock %}
