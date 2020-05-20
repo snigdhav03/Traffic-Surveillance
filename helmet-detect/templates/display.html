@@ -1,7 +1,12 @@
 {% extends "layout.html" %}   
 {% block content %} 
-    <h1>Pi Video Surveillance</h1>
+<div class="jumbotron">
+      <h1 class="display-4">TRAFFIC SURVEILLANCE VIDEO</h1>
+      <p class="lead">We are currently making use of video snippets of vehicle traffic across the world and perform the surveillance on that.</p>
+      <hr class="my-4">      
     <img src="{{ url_for('video') }}">
+      
+    </div>  
 
 {% endblock %}
     

@@ -4,11 +4,13 @@ from imutils.video import VideoStream
 import numpy as np
 from imutils.video import FPS
 import imutils
-import time
+from time import time
 import cv2
 from keras.models import load_model
+from camera import Camera
 
 app= Flask(__name__)
+
 
 @app.route("/", methods=["GET"])
 def homepage():
@@ -22,9 +24,20 @@ def approach():
 def challenges():
     return render_template("challenges.html")
 
+@app.route("/display", methods=["GET"])
+def display():
+    return render_template("display.html")
+
+def gen(cam):
+    while True:
+        frame = cam.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+ 
+
 @app.route("/video", methods=["GET"])
 def video():
-    return Response(app_function(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route("/api", methods=["GET"])
 def app_function():
@@ -46,7 +59,7 @@ def app_function():
     print("[INFO] starting video stream...")
 
     # Loading the video file
-    cap = cv2.VideoCapture('vid1.mp4') 
+    cap = cv2.VideoCapture('v.mp4') 
     # time.sleep(2.0)
 
     # Starting the FPS calculation
