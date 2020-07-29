@@ -40,7 +40,7 @@ class Camera():
         print("[INFO] starting video stream...")
 
         # Loading the video file
-        self.cap = cv2.VideoCapture('v.mp4')
+        self.cap = cv2.VideoCapture('videoplayback.mp4')
         print("Camera warming up ...")
         time.sleep(1)
 
