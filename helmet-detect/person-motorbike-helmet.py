@@ -1,5 +1,5 @@
 # import necessary packages
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
 from imutils.video import VideoStream
 import numpy as np
 from imutils.video import FPS
@@ -35,9 +35,9 @@ def gen(cam):
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
  
 
-@app.route("/video", methods=["GET"])
-def video():
-    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route("/videos/<name>", methods=["GET"])
+def video2(name):
+    return Response(gen(Camera(name+".mp4")), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000, debug=True)

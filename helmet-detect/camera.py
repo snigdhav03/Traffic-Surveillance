@@ -13,11 +13,12 @@ import time
 
 class Camera():
     # Constructor...
-    def __init__(self):
+    def __init__(self,arg):
         w = 640			# Frame width...
         h = 480			# Frame hight...
         fps = 20.0                    # Frames per second...
         resolution = (w, h)         	# Frame size/resolution...
+        self.video_name=arg
 
         # initialize the list of class labels MobileNet SSD was trained to detect
         # generate a set of bounding box colors for each class
@@ -40,7 +41,7 @@ class Camera():
         print("[INFO] starting video stream...")
 
         # Loading the video file
-        self.cap = cv2.VideoCapture('videoplayback.mp4')
+        self.cap = cv2.VideoCapture(self.video_name)
         print("Camera warming up ...")
         time.sleep(1)
 
@@ -163,7 +164,7 @@ class Camera():
             fps.update()
         
         cv2.destroyAllWindows()
-        # cap.release()
+        #cap.release()
 
 
     # Frame generation for Browser streaming wiht Flask...
@@ -202,22 +203,14 @@ class Camera():
         self.out.write(self.frame)
         return()
 
-    def __del__(self):
-        self.cap.release()
-        cv2.destroyAllWindows()
-        self.out.release()
-        print("Camera disabled and all output windows closed...")
-        return()
+    
 
 
 def main():
     # Create a camera instance...
-    cam1 = Camera()
-
     while(True):
         # Display the resulting frames...
-        cam1.captureVideo()    # Live stream of video on screen...
-        cam1.saveVideo()       # Save video to file 'output.avi'...
+              # Save video to file 'output.avi'...
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     return()

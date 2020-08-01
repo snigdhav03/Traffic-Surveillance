@@ -4,9 +4,41 @@
       <h1 class="display-4">TRAFFIC SURVEILLANCE VIDEO</h1>
       <p class="lead">We are currently making use of video snippets of vehicle traffic across the world and perform the surveillance on that.</p>
       <hr class="my-4">      
-    <img src="{{ url_for('video') }}">
-      
-    </div>  
+
+  {% set details=[ 
+    {'area': 'West Bengal', 'content': 'The number of road accidents across the Indian state of West Bengal in 2018 was around 12.7 thousand. Traffic discrepancies have been a major source of death, injury and damage to property every year. In 2018, over-speeding of vehicles was the main reason for road accident casualties. India ranked first out of 200 reported in World Road Statistics that year for the number of road accident deaths'}, 
+    {'area': 'Vietnam', 'content': 'The abundance of motorcycles in Vietnam makes it one of the most desirable places to hit the road. However, it is also one of the most dangerous places to drive. As per the WHO, approximately 14,000 people lose their lives each year in Viet Nam as a result of road traffic crashes. Motorcyclists account for a high proportion (59%) of the road traffic collisions in the country'}, 
+    {'area': 'Uttar Pradesh', 'content': 'The number of persons killed in road crashes in India touched all time high in 2018 registering over 1.51 lakh fatalities, an increase of nearly 3,500 more people losing their lives as compared to 2017, with UP recording maximum road fatalities'},
+    {'area': 'Taiwan', 'content': 'In Taiwan, every year about 1.3 million people are wiped out in road crashes and as many as 50 million injured, according to the World Health Organization (WHO) and the World Bank. That’s more than 3,500 people dying daily, most of them kids, the elderly, pedestrians and cyclists. These figures are set to increase by 65 percent over the next 20 years if nothing changes'}, 
+    {'area': 'New Delhi', 'content': 'Delhi has the highest number of fatal accidents among all cities across the country, with five deaths per day. The share of fatal road accidents have increased phenomenally as Indian cities are giving more importance to high speed roads for vehicles'}  ] %}
+    
+    {% for i in range(1,6)%}
+    
+      {% set link= "static/vid"+i|string+".mp4" %}    
+      {% set ref= "videos/vid"+i|string %}
+
+      <div class="card" style="width: 950px; height: 280px;">
+        <div class="row no-gutters">
+            <div class="col-sm-5">
+              <video controls="" name="media" class="card-img" height= "280px">
+                <source src="{{link}}" type="video/mp4">
+              </video>
+                
+            </div>
+            <div class="col-sm-7">
+                <div class="card-body">
+                    <h3 class="card-title">{{details[i-1].area}}</h3>
+                    <p class="card-text">{{details[i-1].content}}.</p>
+                    <a href="{{ref}}" class="btn btn-primary">Analyse</a>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    {%endfor%}
+
+    
+
 
 {% endblock %}
     
